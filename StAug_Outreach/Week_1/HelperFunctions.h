@@ -1,5 +1,5 @@
-#ifndef ROBOT_ARM_H
-#define ROBOT_ARM_H
+#ifndef HELPER_FUNCTIONS_H
+#define HELPER_FUNCTIONS_H
 
 #include <Arduino.h>
 #include <Servo.h>
@@ -37,4 +37,4 @@ void challenge_1 ();
 void challenge_2 ();
 void move_to_zero();
 
-#endif  // ROBOT_ARM_H
+#endif  // HELPER_FUNCTIONS_H
