@@ -47,7 +47,7 @@ void setupRobotArm() {
 
 
 //input angle is the angle you want the shoulder to move to. newAngle accounts for the differences in max PWM with the servo.write() function.
-void moveShoulder(int inputAngle){
+void moveShoulderFast(int inputAngle){
   if(inputAngle < 0 || inputAngle > 270){
     exit(0);
   }
@@ -60,7 +60,7 @@ void moveShoulder(int inputAngle){
 }
 
 //a wrapper function for moveShoulder that goes slower 
-void moveShoulderSlowly(int inputAngle){
+void moveShoulder(int inputAngle){
   int totalTime = 1000; //hard coded to 2 seconds
 
   int currentAngle = map(shoulder.read(), 0, 180, 0, 270);
@@ -79,7 +79,7 @@ void moveShoulderSlowly(int inputAngle){
   //delay(5000);
   for (i = 0; i < delta; i++) {
 
-    moveShoulder(newAngle);
+    moveShoulderFast(newAngle);
     delay(tDelay);
     newAngle += sign;
   }
@@ -87,7 +87,7 @@ void moveShoulderSlowly(int inputAngle){
 }
 
 //input angle is the angle you want the base to move to. newAngle accounts for the differences in max PWM with the servo.write() function.
-void moveBase(int inputAngle){
+void moveBaseFast(int inputAngle){
   //crash program for invalid angles
   if(inputAngle < 0 || inputAngle > 270){
     exit(0);
@@ -97,7 +97,7 @@ void moveBase(int inputAngle){
 }
 
 //a wrapper function for moveShoulder that goes slower 
-void moveBaseSlowly(int inputAngle){
+void moveBase(int inputAngle){
   int totalTime = 1000; //hard coded to 2 seconds
 
   int currentAngle = map(base.read(), 0, 180, 0, 270);
@@ -117,14 +117,14 @@ void moveBaseSlowly(int inputAngle){
   int i = 0;
   
   for (i = 0; i < delta; i++) {
-    moveBase(newAngle);
+    moveBaseFast(newAngle);
     delay(tDelay);
     newAngle += sign;
   }
 
 }
 
-void moveElbow(int inputAngle){
+void moveElbowFast(int inputAngle){
   //crash program for invalid angles
 
   if(inputAngle < 0 || inputAngle > 180){
@@ -141,7 +141,7 @@ void moveElbow(int inputAngle){
   elbow.write(newAngle);
 }
 
-void moveElbowSlowly(int inputAngle){
+void moveElbow(int inputAngle){
   int totalTime = 500; //hard coded to 2 seconds
 
   int currentAngle = elbow.read();
@@ -161,14 +161,14 @@ void moveElbowSlowly(int inputAngle){
   int i = 0;
   
   for (i = 0; i < delta; i++) {
-    moveElbow(newAngle);
+    moveElbowFast(newAngle);
     delay(tDelay);
     newAngle += sign;
   }
 
 }
 
-void moveWrist(int inputAngle){
+void moveWristFast(int inputAngle){
   //crash program for invalid angles
   if(inputAngle < 0 || inputAngle > 180){
     exit(0);
@@ -178,7 +178,7 @@ void moveWrist(int inputAngle){
   wrist.write(newAngle);
 }
 
-void moveWristSlowly(int inputAngle){
+void moveWrist(int inputAngle){
   int totalTime = 500; //hard coded to 2 seconds
 
   int currentAngle = wrist.read();
@@ -198,14 +198,14 @@ void moveWristSlowly(int inputAngle){
   int i = 0;
   
   for (i = 0; i < delta; i++) {
-    moveWrist(newAngle);
+    moveWristFast(newAngle);
     delay(tDelay);
     newAngle += sign;
   }
 
 }
 
-void moveGripper(int inputAngle){
+void moveGripperFast(int inputAngle){
   //crash program for invalid angles
   if(inputAngle < 0 || inputAngle > 180){
     exit(0);
@@ -213,7 +213,7 @@ void moveGripper(int inputAngle){
   gripper.write(inputAngle);
 }
 
-void moveGripperSlowly(int inputAngle){
+void moveGripper(int inputAngle){
   int totalTime = 500; //hard coded to 2 seconds
 
   int currentAngle = gripper.read();
@@ -233,7 +233,7 @@ void moveGripperSlowly(int inputAngle){
   int i = 0;
   
   for (i = 0; i < delta; i++) {
-    moveGripper(newAngle);
+    moveGripperFast(newAngle);
     delay(tDelay);
     newAngle += sign;
   }
@@ -291,25 +291,25 @@ void pickUpObject(){
 }
 
 void moveObject(){
-  moveBaseSlowly(0);
-  moveGripperSlowly(0);
+  moveBase(0);
+  moveGripper(0);
   delay(1000);
-  moveShoulderSlowly(130);
+  moveShoulder(130);
   moveElbow(32);
-  moveWristSlowly(105);
+  moveWrist(105);
   delay(1000);
   moveGripper(180);
   delay(1000);
-  moveShoulderSlowly(80);
-  moveWristSlowly(50);
-  moveBaseSlowly(120);
+  moveShoulder(80);
+  moveWrist(50);
+  moveBase(120);
   delay(1000);
-  moveShoulderSlowly(130);
-  moveWristSlowly(105);
+  moveShoulder(130);
+  moveWrist(105);
   delay(1000);
   moveGripper(0);
   delay(1000);
-  moveShoulderSlowly(80);
-  moveWristSlowly(50);
+  moveShoulder(80);
+  moveWrist(50);
   delay(1000);
 }

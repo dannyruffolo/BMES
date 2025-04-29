@@ -32,17 +32,17 @@ extern const int gripperIdx;
 void setupRobotArm();
 
 // Move functions
+void moveShoulderFast(int inputAngle);
+void moveBaseFast(int inputAngle);
+void moveElbowFast(int inputAngle);
+void moveWristFast(int inputAngle);
+void moveGripperFast(int inputAngle);
+
 void moveShoulder(int inputAngle);
 void moveBase(int inputAngle);
 void moveElbow(int inputAngle);
 void moveWrist(int inputAngle);
 void moveGripper(int inputAngle);
-
-void moveShoulderSlowly(int inputAngle);
-void moveBaseSlowly(int inputAngle);
-void moveElbowSlowly(int inputAngle);
-void moveWristSlowly(int inputAngle);
-void moveGripperSlowly(int inputAngle);
 
 // Motion macros
 void wave();
